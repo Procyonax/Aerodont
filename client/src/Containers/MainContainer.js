@@ -8,13 +8,14 @@ import logo from '../logo.svg';
 import Dashboard from '../Components/Dashboard';
 import TripForm from '../Components/TripForm';
 import TripsList from '../Components/TripsList';
+import Navbar from '../Components/Header/Navbar';
 
 // Container definition
 const MainContainer = () => {
 
 return(
     <Router>
-        {/* <Header/> */}
+        <Navbar/>
         <Routes>
             <Route path = "/" element = { <Dashboard/>} />
             <Route path = "/create_trip" element = { <TripForm /* properties to be added */ /> } />
