@@ -2,16 +2,16 @@ import React from 'react';
 import '../App.css';
 import logo from '../logo.svg';
 
-const TripsList = () => {
+import Trip from './Trip/Trip';
+
+const TripsList = ({trips}) => {
+    const tripList = trips.map((trip) => {
+        return <Trip trip = {trip} key = {trip._id}/>
+    })
     return(
-        <div className="App">
-            <header className="App-header">
-            <img src={logo} className="App-logo" alt="logo" />
-            <p>
-                How Selfish Is Your Trip? : Coming Soon™ 
-            </p>
-            </header>
-        </div> 
+        <>
+            {tripList}
+        </>
     )
 }
 
