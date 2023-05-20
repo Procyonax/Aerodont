@@ -8,25 +8,26 @@ import {IconContext} from "react-icons/lib"
 
 const Navbar = () => {
 
-    // Switch burger classes
     const [click, setClick] = useState(false)
-
-    // Toggle burger menu change
     const handleClick = () => setClick(!click)
     const closeMobileMenu = () => setClick(false)
 
     return(
         <>
+            {/* IconContext changes icons from default black to white, as background is black */}
             <IconContext.Provider value ={{color: '#fff'}}>
                 <nav className="navbar">
                     <div className="navbar-container container">
+                        {/* Logo routes to home and closes mobile menu when clicked */}
                         <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
                             <FaPlaneDeparture className="navbar-icon"/> 
                             Aerodon't
                         </Link>
+                        {/* Switches burger between bars when inactive and cross when active */}
                         <div className="menu-icon" onClick={handleClick}>
                             {click ? <FaTimes /> : <FaBars />}
                         </div>
+                        {/* Route links with highlight effect when active */}
                             <ul className={click ? "nav-menu active" : "nav-menu"}>
                                 <li className="nav-item">
                                     <NavLink to="/" className={({ isActive }) => "nav-links" + (isActive ? " activated" : "")} onClick={closeMobileMenu}>Home</NavLink>
