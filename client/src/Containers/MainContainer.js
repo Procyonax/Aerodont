@@ -1,28 +1,26 @@
+// Package and CSS imports
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import '../App.css';
 import logo from '../logo.svg';
 
+// Component imports
+import Dashboard from '../Components/Dashboard';
+import TripForm from '../Components/TripForm';
+import TripsList from '../Components/TripsList';
+
+// Container definition
 const MainContainer = () => {
 
 return(
-    <div className="App">
-        <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-            How Selfish Is Your Trip? : Coming Soon™ 
-        </p>
-        </header>
-    </div>
-
-    // <Router>
-    //     <Header "add properties"/>
-    //     <Routes>
-    //         <Route path "/" element = { <Dashboard "add properties"/>} />
-    //         <Route path "/create_trip" element = { <TripForm "add properties"/>} />
-    //         <Route path "my_trips" element = { <TripsList "add properties"/> }/>
-    //     </Routes>
-    // </Router>
+    <Router>
+        {/* <Header/> */}
+        <Routes>
+            <Route path = "/" element = { <Dashboard/>} />
+            <Route path = "/create_trip" element = { <TripForm /* properties to be added */ /> } />
+            <Route path = "/my_trips" element = { <TripsList /* properties to be added */ /> }/>
+        </Routes>
+    </Router>
 )
 
 }
