@@ -1,38 +1,47 @@
 import React, {useState} from "react";
-import './Navbar.css'
+import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom"
+import "./Navbar.css"
+import {FaPlaneDeparture} from "react-icons/fa"
+import {FaBars, FaTimes} from "react-icons/fa"
+import {IconContext} from "react-icons/lib"
 
 const Navbar = () => {
 
     // Switch burger classes
-    const [burger_class, setBurgerClass] = useState("burger-bar unclicked")
-    const [menu_class, setMenuClass] = useState("menu hidden")
-    const [isMenuClicked, setIsMenuClicked] = useState(false)
+    const [click, setClick] = useState(false)
 
     // Toggle burger menu change
-    const updateMenu = () => {
-        if(!isMenuClicked) {
-            setBurgerClass("burger-bar clicked")
-            setMenuClass("menu visible")
-        }
-        else {
-            setBurgerClass("burger-bar unclicked")
-            setMenuClass("menu hidden")
-        }
-        setIsMenuClicked(!isMenuClicked)
-    }
+    const handleClick = () => setClick(!click)
+    const closeMobileMenu = () => setClick(false)
 
     return(
-        <div style={{width: '100%', height: '100vh'}}>
-            <nav>
-                <div className="burger-menu" onClick={updateMenu}>
-                    <div className={burger_class} ></div>
-                    <div className={burger_class} ></div>
-                    <div className={burger_class} ></div>
-                </div>
-            </nav>
-
-            <div className={menu_class}></div>
-        </div>
+        <>
+            <IconContext.Provider value ={{color: '#fff'}}>
+                <nav className="navbar">
+                    <div className="navbar-container container">
+                        <Link to="/" className="navbar-logo" onClick={closeMobileMenu}>
+                            <FaPlaneDeparture className="navbar-icon"/> 
+                            Aerodon't
+                        </Link>
+                        <div className="menu-icon" onClick={handleClick}>
+                            {click ? <FaTimes /> : <FaBars />}
+                        </div>
+                            <ul className={click ? "nav-menu active" : "nav-menu"}>
+                                <li className="nav-item">
+                                    <NavLink to="/" className={({ isActive }) => "nav-links" + (isActive ? " activated" : "")} onClick={closeMobileMenu}>Home</NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink to="/create_trip" className={({ isActive }) => "nav-links" + (isActive ? " activated" : "")} onClick={closeMobileMenu}>Create Trip</NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    <NavLink to="/my_trips" className={({ isActive }) => "nav-links" + (isActive ? " activated" : "")} onClick={closeMobileMenu}>My Trips</NavLink>
+                                </li>
+                            </ul>
+                    </div>
+                </nav>
+            </IconContext.Provider>
+        </>
     )
 }
 
