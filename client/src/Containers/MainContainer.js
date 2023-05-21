@@ -25,13 +25,18 @@ useEffect(() => {
     })
 },[])
 
+const removeTrip = (id) => {
+    const tripsToKeep = trips.filter(trips => trips._id !== id)
+    setTrips(tripsToKeep)
+}
+
 return(
     <Router>
         <Navbar/>
         <Routes>
             <Route path = "/" element = { <Dashboard />} />
             <Route path = "/create_trip" element = { <TripForm /* properties to be added */ /> } />
-            <Route path = "/my_trips" element = { <TripsList trips={trips} /> }/>
+            <Route path = "/my_trips" element = { <TripsList trips={trips} removeTrip={removeTrip} /> }/>
             <Route path = "*" element = {< ErrorPage />} />
         </Routes>
     </Router>
