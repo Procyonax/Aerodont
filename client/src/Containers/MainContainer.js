@@ -9,6 +9,7 @@ import TripForm from "../Components/TripForm";
 import TripsList from "../Components/TripsList";
 import Navbar from "../Components/Header/Navbar";
 import ErrorPage from "../Components/ErrorPage";
+import Footer from "../Components/Footer/Footer";
 
 // Service imports
 import { getTrips } from "../TripService";
@@ -58,6 +59,7 @@ return(
                 <Route path = "*" element = {< ErrorPage />} />
             </Routes>
         </div>
+        <Footer/>
     </Router>
 )
 
