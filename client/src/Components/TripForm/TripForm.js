@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
-import '../App.css';
+import './TripForm.css';
+import '../../App.css';
 
 const TripForm = ({createTrip}) => {
 
@@ -30,20 +31,21 @@ const TripForm = ({createTrip}) => {
       }
 
     return(
+        <div className="trip-form-container">
         <form onSubmit={handleSubmit}>
-            <h1>Create a new trip</h1>
+            <h1 className="create-trip-header">Create Trip</h1>
                 <div className="create-trip">
-                    <label htmlFor="from">From:</label>
+                    <label htmlFor="from">From: </label>
                     <input type="text" id="from" name="from" value={from} required onChange={handleFromChange}/>
                 </div>
                 
                 <div className="create-trip">
-                    <label htmlFor="to">To:</label>
+                    <label htmlFor="to">To: </label>
                     <input type="text" id="to" name="to" value={to} required onChange={handleToChange}/>
                 </div>
             
                 <div className="create-trip">
-                    <label htmlFor="cabin">Cabin:</label>
+                    <label htmlFor="cabin">Cabin: </label>
                     <select name="cabin" value={cabin} required onChange={handleCabinChange}>
                         <option value="economy">Economy</option>
                         <option value="premium">Premium</option>
@@ -53,11 +55,14 @@ const TripForm = ({createTrip}) => {
                 </div>
 
                 <div className="create-trip">
-                    <label htmlFor="nights">Nights:</label>
-                    <input type="text" id="nights" name="nights" value={nights} required onChange={handleNightsChange}/>
+                    <label htmlFor="nights">Nights: </label>
+                    <input type="number" step="1" id="nights" name="nights" value={nights} required onChange={handleNightsChange}/>
                 </div>
-            <input type="submit" name="submit" value="Save" />
+                <div className="create-trip-button-container">
+                    <input className="create-trip-button" type="submit" name="submit" value="Create Trip" />
+                </div>
       </form>
+    </div>
     )
 }
 
