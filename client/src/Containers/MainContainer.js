@@ -17,13 +17,30 @@ import { getTrips } from "../TripService";
 const MainContainer = () => {
 
 const [trips, setTrips] = useState([]);
+const [totals, setTotals] = useState({})
 
 useEffect(() => {
     getTrips()
     .then((allTrips) => {
         setTrips(allTrips)
-    })
-},[])
+    })},[])
+
+useEffect (() => {
+    setTotals(calculateTotals())
+},[trips])
+
+function calculateTotals () {
+    const footprintTotal = trips.reduce((acc, it) => {
+        return acc + it["footprint"]
+    } , 0)  
+    const tripNumberTotal = trips.length
+    const averageFootprint = footprintTotal / tripNumberTotal
+    return {
+        total_footprint: footprintTotal,
+        total_number_of_trips: tripNumberTotal,
+        average_trip_footprint: averageFootprint
+    }
+}
 
 const removeTrip = (id) => {
     const tripsToKeep = trips.filter(trips => trips._id !== id)
@@ -34,7 +51,7 @@ return(
     <Router>
         <Navbar/>
         <Routes>
-            <Route path = "/" element = { <Dashboard />} />
+            <Route path = "/" element = { <Dashboard totals={totals} />} />
             <Route path = "/create_trip" element = { <TripForm /* properties to be added */ /> } />
             <Route path = "/my_trips" element = { <TripsList trips={trips} removeTrip={removeTrip} /> }/>
             <Route path = "*" element = {< ErrorPage />} />
