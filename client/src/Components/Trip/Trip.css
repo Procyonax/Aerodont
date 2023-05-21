@@ -66,8 +66,8 @@
 
 .trip-edit:hover {
     cursor: pointer;
-    background-color: green;
-    color: whitesmoke;
+    background-color: #EFD231;
+    color: black;
     font-weight: bold;
 }
 
