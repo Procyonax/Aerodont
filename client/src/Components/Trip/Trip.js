@@ -1,5 +1,7 @@
 import React from 'react';
 import { deleteTrip } from '../../TripService';
+import './Trip.css';
+import '../../App.css'
 
 const Trip = ({trip, removeTrip}) => {
 
@@ -10,16 +12,19 @@ const Trip = ({trip, removeTrip}) => {
     }
 
     return (
-        <>
-            <p>from: {trip.from}</p>
-            <p>to: {trip.to}</p>
-            <p>nights: {trip.nights}</p>
-            {/* The below round the total carbon figure to the nearest integer and adds commas to separate 1,000's */}
-            <p>footprint: {Math.round(trip.footprint).toLocaleString("en-US")}kg</p>
-            <button> Edit </button>
-            <button onClick={handleDelete}> Delete</button>
-            <hr></hr>
-        </>
+        <div className="trip-container">
+            <div className="trip">
+                <p className="trip-from"> From: <span>{trip.from}</span></p>
+                <p className="trip-to"> To: <span>{trip.to}</span></p>
+                <p className="trip-nights"> Nights: <span>{trip.nights}</span></p>
+                {/* The below rounds the total carbon figure to the nearest integer and adds commas to separate 1,000's */}
+                <p className="trip-footprint"> Footprint: <span>{Math.round(trip.footprint).toLocaleString("en-US")}kg</span></p>
+                <div className="trip-buttons">
+                    <button className="trip-edit"> Edit </button>
+                    <button className="trip-delete" onClick={handleDelete}> Delete </button>
+                </div>
+            </div>
+        </div>
     )
 }
 

@@ -33,12 +33,14 @@ const removeTrip = (id) => {
 return(
     <Router>
         <Navbar/>
-        <Routes>
-            <Route path = "/" element = { <Dashboard />} />
-            <Route path = "/create_trip" element = { <TripForm /* properties to be added */ /> } />
-            <Route path = "/my_trips" element = { <TripsList trips={trips} removeTrip={removeTrip} /> }/>
-            <Route path = "*" element = {< ErrorPage />} />
-        </Routes>
+        <div className="main-container">
+            <Routes>
+                <Route path = "/" element = { <Dashboard />} />
+                <Route path = "/create_trip" element = { <TripForm /* properties to be added */ /> } />
+                <Route path = "/my_trips" element = { <TripsList trips={trips} removeTrip={removeTrip} /> }/>
+                <Route path = "*" element = {< ErrorPage />} />
+            </Routes>
+        </div>
     </Router>
 )
 

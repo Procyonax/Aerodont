@@ -15,7 +15,7 @@ const Navbar = () => {
     return(
         <>
             {/* IconContext changes icons from default black to white, as background is black */}
-            <IconContext.Provider value ={{color: '#fff'}}>
+            <IconContext.Provider value ={{color: '#EFD231'}}>
                 <nav className="navbar">
                     <div className="navbar-container container">
                         {/* Logo routes to home and closes mobile menu when clicked */}
