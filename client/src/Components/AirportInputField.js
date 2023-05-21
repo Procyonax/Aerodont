@@ -8,10 +8,6 @@ const AirportInputField = () => {
     const [suggestions, setSuggestions] = useState([])
 
     useEffect(() => {
-        // const loadAirports = async() => {
-        //     const response = await axios.get('http://localhost:3000/')
-        //     .then((data) => setAirports(data))
-        // }
         loadAirports()
     }, [])
 
@@ -22,9 +18,9 @@ const AirportInputField = () => {
           })
           .then(csv => {
             const {data} = Papa.parse(csv, { header: true });
-            // console.log(data);
+            console.log(data);
             const finalData = data.filter(airport => airport["iata_code"] !== "" && airport["iata_code"] !=="0" && airport["iata_code"] !== "-")
-            // console.log(finalData);
+            console.log(finalData);
             finalData.pop()
             setAirports(finalData);
           })
