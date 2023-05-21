@@ -8,16 +8,20 @@ const AirportInputField = () => {
     const [suggestions, setSuggestions] = useState([])
 
     useEffect(() => {
-        const loadAirports = async() => {
-            const response = await axios.get('http://localhost:3000/')
-            .then((data) => setAirports(data))
-        }
+        // const loadAirports = async() => {
+        //     const response = await axios.get('http://localhost:3000/')
+        //     .then((data) => setAirports(data))
+        // }
         loadAirports()
     }, [])
 
     const loadAirports =  () => {
-        const newFetch = fetch('http://localhost:3000/')
-        .then(response => response.json())
+        const airportFetches = []
+        for(let airport of airports){
+            const newFetch = fetch('http://localhost:3000/')
+            airportFetches.push(newFetch)
+        }
+        Promise.all(airportFetches)
         .then(data => setAirports(data))
     }
 
