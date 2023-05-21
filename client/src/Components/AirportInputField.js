@@ -8,17 +8,24 @@ const AirportInputField = () => {
     const [suggestions, setSuggestions] = useState([])
 
     useEffect(() => {
-        const loadAirports = async() => {
-            const response = await axios.get('http://localhost:3000/')
-            .then((data) => setAirports(data.name))
-        }
         loadAirports()
     }, [])
 
+    const loadAirports =  () => {
+        const airportFetches = []
+        for(let airport of airports){
+            console.log(airport);
+            const newFetch = fetch('http://localhost:3000/')
+            .then(response => response.json())
+            airportFetches.push(newFetch)
+        }
+        Promise.all(airportFetches)
+        .then(data => setAirports(data))
+    }
 
     const onChangeHandler = (text) => {
         let matches = []
-        console.log(airports);
+        // console.log(airports);
         if(text.length>0){
             matches = airports.filter(airport => {
                 const regex = new RegExp(`${text}`, "gi");
