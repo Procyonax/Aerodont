@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import Papa from 'papaparse'
 
 const AirportInputField = () => {
 
@@ -15,15 +15,33 @@ const AirportInputField = () => {
         loadAirports()
     }, [])
 
-    const loadAirports =  () => {
-        const airportFetches = []
-        for(let airport of airports){
-            const newFetch = fetch('http://localhost:3000/')
-            airportFetches.push(newFetch)
-        }
-        Promise.all(airportFetches)
-        .then(data => setAirports(data))
-    }
+    // const loadAirports =  () => {
+    //     const airportFetches = []
+    //     for(let airport of airports){
+    //         const newFetch = fetch('http://localhost:3000/')
+    //         airportFetches.push(newFetch)
+    //     }
+    //     Promise.all(airportFetches)
+    //     .then(data => setAirports(data))
+    // }
+
+    const loadAirports = () => {
+        fetch('https://raw.githubusercontent.com/datasets/airport-codes/master/data/airport-codes.csv')
+          .then(response => {
+            return response.text();
+          })
+          .then(csv => {
+            const {data} = Papa.parse(csv, { header: true });
+            console.log(data);
+            const finalData = data.filter(airport => airport["iata_code"] !== "" && airport["iata_code"] !=="0" && airport["iata_code"] !== "-")
+            console.log(finalData);
+            finalData.pop()
+            setAirports(finalData);
+          })
+          .catch(error => {
+            console.error('Error occurred:', error);
+          });
+      };
 
     const onChangeHandler = (text) => {
         let matches = []
