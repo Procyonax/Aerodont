@@ -14,7 +14,7 @@ import ErrorPage from "../Components/ErrorPage";
 import Footer from "../Components/Footer/Footer";
 
 // Service imports
-import { getTrips } from "../TripService";
+import TripService from "../TripService";
 
 // Container definition
 const MainContainer = () => {
@@ -23,7 +23,7 @@ const [trips, setTrips] = useState([]);
 const [totals, setTotals] = useState({})
 
 useEffect(() => {
-    getTrips()
+    TripService.getTrips()
     .then((allTrips) => {
         setTrips(allTrips)
     })},[])
@@ -50,13 +50,18 @@ const removeTrip = (id) => {
     setTrips(tripsToKeep)
 }
 
+const createTrip = newTrip => {
+    TripService.addTrip(newTrip)
+    .then(savedTrip => setTrips([...trips, savedTrip ]));
+}
+
 return(
     <Router>
         <Navbar/>
         <div className="main-container">
             <Routes>
                 <Route path = "/" element = { <Dashboard totals={totals} />} />
-                <Route path = "/create_trip" element = { <TripForm /* properties to be added */ /> } />
+                <Route path = "/create_trip" element = { <TripForm createTrip={createTrip} /> } />
                 <Route path = "/my_trips" element = { <TripsList trips={trips} removeTrip={removeTrip} /> }/>
                 <Route path = "*" element = {< ErrorPage />} />
             </Routes>

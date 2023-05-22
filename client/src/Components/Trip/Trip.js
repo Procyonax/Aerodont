@@ -1,5 +1,5 @@
 import React from 'react';
-import { deleteTrip } from '../../TripService';
+import TripService from '../../TripService';
 import '../../App.css'
 import './Trip.css';
 
@@ -7,7 +7,7 @@ import './Trip.css';
 const Trip = ({trip, removeTrip}) => {
 
     const handleDelete = () => {
-        deleteTrip(trip._id).then(() => {
+        TripService.deleteTrip(trip._id).then(() => {
             removeTrip(trip._id)
         })
     }
