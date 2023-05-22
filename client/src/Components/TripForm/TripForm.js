@@ -1,6 +1,7 @@
-import React, { useState } from "react";
-import "./TripForm.css";
-import "../../App.css";
+import React, {useState} from 'react';
+import './TripForm.css';
+import '../../App.css';
+import AirportInputField from '../AirportInputField';
 
 const TripForm = ({ createTrip }) => {
   const [from, setFrom] = useState("");
@@ -45,17 +46,30 @@ const TripForm = ({ createTrip }) => {
           />
         </div>
 
-        <div className="create-trip">
-          <label htmlFor="to">To: </label>
-          <input
-            type="text"
-            id="to"
-            name="to"
-            value={to}
-            required
-            onChange={handleToChange}
-          />
-        </div>
+
+    return(
+        <div className="trip-form-container">
+        <form onSubmit={handleSubmit}>
+            <h1 className="create-trip-header">Create Trip</h1>
+                <div className="create-trip">
+                    <label htmlFor="from">From: </label>
+                    <AirportInputField/>
+                </div>
+                
+                <div className="create-trip">
+                    <label htmlFor="to">To: </label>
+                    <AirportInputField/>
+                </div>
+            
+                <div className="create-trip">
+                    <label htmlFor="cabin">Cabin: </label>
+                    <select name="cabin" value={cabin} required onChange={handleCabinChange}>
+                        <option value="economy">Economy</option>
+                        <option value="premium">Premium</option>
+                        <option value="business">Business</option>
+                        <option value="first">First</option>
+                    </select>
+                </div>
 
         <div className="create-trip">
           <label htmlFor="cabin">Cabin: </label>
