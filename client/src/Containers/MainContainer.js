@@ -21,7 +21,7 @@ const [trips, setTrips] = useState([]);
 const [totals, setTotals] = useState({})
 
 useEffect(() => {
-    getTrips()
+    TripService.getTrips()
     .then((allTrips) => {
         setTrips(allTrips)
     })},[])
