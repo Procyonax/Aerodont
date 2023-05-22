@@ -1,70 +1,70 @@
 .dash {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    flex-wrap: wrap;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  flex-wrap: wrap;
 }
 
-.dash-header{
-    display: flex;
-    color: white;
-    justify-content: center;
-    padding: 2rem;
+.dash-header {
+  display: flex;
+  color: white;
+  justify-content: center;
+  padding: 2rem;
 }
 
 .dash-chart {
-    padding: 2rem;
-    background-color: white;
-    display: flex;
-    justify-content: center;
+  padding: 2rem;
+  background-color: white;
+  display: flex;
+  justify-content: center;
 }
 
 .dash-results {
-    background-color: white;
-    padding: 2rem;
-    margin-bottom: 2rem;
+  background-color: white;
+  padding: 2rem;
+  margin-bottom: 2rem;
 }
 
 .dash-results-CO2 {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .dash-results-CO2 > span {
-    font-weight: 400;
-}   
+  font-weight: 400;
+}
 
 .dash-results-trips {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .dash-results-trips > span {
-    font-weight: 400;
+  font-weight: 400;
 }
 
 .dash-results-average {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .dash-results-average > span {
-    font-weight: 400;
+  font-weight: 400;
 }
 
 .dash-view-trips-container {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .dash-view-trips {
-    padding: 0.2rem;
-    width: 100px;
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
+  padding: 0.2rem;
+  width: 100px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
 .dash-view-trips:hover {
-    cursor: pointer;
-    background-color: #EFD231;
-    color: black;
-    font-weight: bold;
+  cursor: pointer;
+  background-color: #efd231;
+  color: black;
+  font-weight: bold;
 }
