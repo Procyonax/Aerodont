@@ -2,8 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "../App.css";
-import logo from "../logo.svg";
-import AirportInputField from "../Components/AirportInputField";
+
 
 // Component imports
 import Dashboard from "../Components/Dashboard/Dashboard";
