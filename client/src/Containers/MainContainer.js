@@ -19,12 +19,13 @@ import TripService from "../TripService";
 const MainContainer = () => {
   const [trips, setTrips] = useState([]);
   const [totals, setTotals] = useState({});
+  const [tripToEdit, setTripToEdit] = useState(null);
 
   useEffect(() => {
     TripService.getTrips().then((allTrips) => {
       setTrips(allTrips);
     });
-  }, []);
+  }, [tripToEdit]);
 
   useEffect(() => {
     setTotals(calculateTotals());
@@ -54,6 +55,14 @@ const MainContainer = () => {
     );
   };
 
+  const handleEditClicked = (trip) => {
+    setTripToEdit(trip)
+  };
+
+  const handleTripUpdate = (id, trip) => {
+    putTrip(id, trip)
+  };
+
   return (
     <Router>
       <Navbar />
@@ -66,7 +75,8 @@ const MainContainer = () => {
           />
           <Route
             path="/my_trips"
-            element={<TripsList trips={trips} removeTrip={removeTrip} />}
+            element={<TripsList trips={trips} removeTrip={removeTrip} 
+            handleEditClicked={handleEditClicked} tripToEdit={tripToEdit} handleTripUpdate={handleTripUpdate}/>}
           />
           <Route path="*" element={<ErrorPage />} />
         </Routes>

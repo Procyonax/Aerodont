@@ -51,12 +51,12 @@ const TripForm = ({ createTrip }) => {
                 name="cabin"
                 value={cabin}
                 required
-                onSelect={handleCabinChange}
+                onChange={handleCabinChange}
               >
-                <option value="economy">Economy</option>
-                <option value="premium">Premium</option>
-                <option value="business">Business</option>
-                <option value="first">First</option>
+                <option value="Economy">Economy</option>
+                <option value="Premium">Premium</option>
+                <option value="Business">Business</option>
+                <option value="First">First</option>
               </select>
             </div>
 
