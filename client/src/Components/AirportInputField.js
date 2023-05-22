@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Papa from "papaparse";
 
-const AirportInputField = () => {
+const AirportInputField = ({destination, setTo, setFrom}) => {
   const [airports, setAirports] = useState([]);
   const [text, setText] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -9,6 +9,15 @@ const AirportInputField = () => {
   useEffect(() => {
     loadAirports();
   }, []);
+
+  useEffect(() => {
+    if (destination === 'from'){
+      setFrom(text)
+    }
+    if (destination === 'to'){
+      setTo(text)
+    }
+  }, [text])
   
 
     const loadAirports = () => {
@@ -41,6 +50,8 @@ const AirportInputField = () => {
         // console.log('matches', matches);
         setSuggestions(matches)
         setText(text)
+        // setFrom(foundAirport)
+        // setTo(foundAirport)
     }
 
   const onSuggestHandler = (text) => {
@@ -50,16 +61,10 @@ const AirportInputField = () => {
 
   return (
     <div>
-      {/* <div>{text}</div> */}
       <input
         type="text"
         onChange={(event) => onChangeHandler(event.target.value)}
         value={text}
-        // onBlur={()=>{
-        //     setTimeout(()=>{
-        //         setSuggestions([])
-        //     },100);
-        // }}
         />
         {suggestions && suggestions.map((suggestion, i)=>
         <div key={i} onClick={() => onSuggestHandler(suggestion.name)}>
