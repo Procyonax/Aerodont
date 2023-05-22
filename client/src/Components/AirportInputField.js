@@ -1,15 +1,39 @@
-import React, { useEffect, useState } from 'react';
-import Papa from 'papaparse'
+import React, { useEffect, useState } from "react";
+import Papa from "papaparse";
 
 const AirportInputField = () => {
+  const [airports, setAirports] = useState([]);
+  const [text, setText] = useState("");
+  const [suggestions, setSuggestions] = useState([]);
 
-    const [airports, setAirports] = useState([])
-    const [text, setText] = useState('')
-    const [suggestions, setSuggestions] = useState([])
+  useEffect(() => {
+    loadAirports();
+  }, []);
 
-    useEffect(() => {
-        loadAirports()
-    }, [])
+  const loadAirports = () => {
+    fetch(
+      "https://raw.githubusercontent.com/datasets/airport-codes/master/data/airport-codes.csv"
+    )
+      .then((response) => {
+        return response.text();
+      })
+      .then((csv) => {
+        const { data } = Papa.parse(csv, { header: true });
+        console.log(data);
+        const finalData = data.filter(
+          (airport) =>
+            airport["iata_code"] !== "" &&
+            airport["iata_code"] !== "0" &&
+            airport["iata_code"] !== "-"
+        );
+        console.log(finalData);
+        finalData.pop();
+        setAirports(finalData);
+      })
+      .catch((error) => {
+        console.error("Error occurred:", error);
+      });
+  };
 
     const loadAirports = () => {
         fetch('https://raw.githubusercontent.com/datasets/airport-codes/master/data/airport-codes.csv')
@@ -42,17 +66,22 @@ const AirportInputField = () => {
         setSuggestions(matches)
         setText(text)
     }
+    // console.log('matches', matches);
+    setSuggestions(matches);
+    setText(text);
+  };
 
-    const onSuggestHandler = (text) => {
-        setText(text);
-        setSuggestions([]);
-    }
+  const onSuggestHandler = (text) => {
+    setText(text);
+    setSuggestions([]);
+  };
 
-    return ( 
-        <div>
-            {/* <div>{text}</div> */}
-        <input type="text"
-        onChange={event => onChangeHandler(event.target.value)}
+  return (
+    <div>
+      {/* <div>{text}</div> */}
+      <input
+        type="text"
+        onChange={(event) => onChangeHandler(event.target.value)}
         value={text}
         // onBlur={()=>{
         //     setTimeout(()=>{
@@ -63,9 +92,10 @@ const AirportInputField = () => {
         {suggestions && suggestions.map((suggestion, i)=>
         <div key={i} onClick={() => onSuggestHandler(suggestion.name)}>
             {suggestion.name}
-        </div>)}
-        </div>
-     );
-}
- 
+          </div>
+        ))}
+    </div>
+  );
+};
+
 export default AirportInputField;
