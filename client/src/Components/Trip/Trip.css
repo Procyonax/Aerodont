@@ -36,6 +36,15 @@
   font-weight: 400;
 }
 
+.trip-cabin {
+  padding: 0.2rem;
+  font-weight: bold;
+}
+
+.trip-cabin > span {
+  font-weight: 400;
+}
+
 .trip-nights {
   padding: 0.2rem;
   font-weight: bold;

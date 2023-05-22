@@ -4,7 +4,8 @@
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
-  position: absolute;
+  position: relative;
+  margin-top: 260px;
   bottom: 0;
   border-top: 5px solid;
   border-color: #efd231;
