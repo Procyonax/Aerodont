@@ -61,7 +61,7 @@
 }
 
 .nav-item:hover {
-  border-bottom: 2px solid #EFD231;
+  border-bottom: 2px solid #efd231;
 }
 
 .nav-links {
@@ -74,11 +74,11 @@
 }
 
 .activated {
-  color: #EFD231;
+  color: #efd231;
 }
 
 .fa-bars {
-  color: #EFD231;
+  color: #efd231;
 }
 
 .menu-icon {
@@ -119,7 +119,7 @@
   }
 
   .nav-links:hover {
-    color: #EFD231;
+    color: #efd231;
     transform: scale(1.2);
     transition: all 0.3s ease;
   }
