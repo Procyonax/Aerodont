@@ -21,6 +21,7 @@ const Trip = ({ trip, removeTrip }) => {
           {" "}
           To: <span>{trip.to}</span>
         </p>
+        <p className="trip-cabin">To: <span>{trip.cabin}</span></p>
         <p className="trip-nights">
           {" "}
           Nights: <span>{trip.nights}</span>

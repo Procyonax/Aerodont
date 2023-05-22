@@ -6,7 +6,7 @@ import AirportInputField from '../AirportInputField';
 const TripForm = ({ createTrip }) => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
-  const [cabin, setCabin] = useState("economy");
+  const [cabin, setCabin] = useState("");
   const [nights, setNights] = useState(0);
 
   const handleFromChange = (event) => setFrom(event.target.value);
@@ -51,12 +51,12 @@ const TripForm = ({ createTrip }) => {
                 name="cabin"
                 value={cabin}
                 required
-                onSelect={handleCabinChange}
+                onChange={handleCabinChange}
               >
-                <option value="economy">Economy</option>
-                <option value="premium">Premium</option>
-                <option value="business">Business</option>
-                <option value="first">First</option>
+                <option value="Economy">Economy</option>
+                <option value="Premium">Premium</option>
+                <option value="Business">Business</option>
+                <option value="First">First</option>
               </select>
             </div>
 
