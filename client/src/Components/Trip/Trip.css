@@ -1,0 +1,85 @@
+.trip-container {
+    display: flex;
+    flex-direction: row;
+}
+
+.trip {
+    display:flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    border-style: solid;
+    border-color: #EFD231;
+    border-width: 0.3rem;
+    margin: 2rem;
+    background-color: whitesmoke;
+    width: 450px;
+}
+
+.trip-from {
+    padding: 0.2rem;
+    font-weight: bold;
+}
+
+.trip-from > span {
+    font-weight: 400;
+}
+
+.trip-to {
+    padding: 0.2rem;
+    font-weight: bold;
+}
+
+.trip-to > span {
+    font-weight: 400;
+}
+
+.trip-nights {
+    padding: 0.2rem;
+    font-weight: bold;
+}
+
+.trip-nights > span {
+    font-weight: 400;
+}
+
+.trip-footprint {
+    font-weight: bold;
+    padding: 0.2rem;
+}
+
+.trip-footprint > span {
+    font-weight: 400;
+}
+
+.trip-buttons {
+    display: flex;
+}
+
+.trip-edit {
+    padding: 0.2rem;
+    margin: 0.5rem;
+    width: 100px;
+}
+
+.trip-edit:hover {
+    cursor: pointer;
+    background-color: #EFD231;
+    color: black;
+    font-weight: bold;
+}
+
+.trip-delete {
+    padding: 0.2rem;
+    margin: 0.5rem;
+    width: 100px
+}
+
+.trip-delete:hover{
+    cursor: pointer;
+    background-color: red;
+    color: whitesmoke;
+    font-weight: bold;
+}
