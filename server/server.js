@@ -1,15 +1,10 @@
-import express, { json } from "express";
+const express = require("express")
 const app = express();
-import fetch from "node-fetch";
-
-import cors from "cors";
-app.use(cors());
-
-import { MongoClient } from "mongodb";
-import createRouter from "./helpers/create_router.js";
-
-app.use(json());
-
+const cors = require("cors");
+app.use(cors())
+const MongoClient = require('mongodb').MongoClient;
+const createRouter = require('./helpers/create_router.js');
+app.use(express.json());
 MongoClient.connect("mongodb://127.0.0.1:27017", { useUnifiedTopology: true })
   .then((client) => {
     const db = client.db("trips");
@@ -18,7 +13,6 @@ MongoClient.connect("mongodb://127.0.0.1:27017", { useUnifiedTopology: true })
     app.use("/api/trips", tripsRouter);
   })
   .catch(console.err);
-
 app.listen(9000, function () {
   console.log(`Trips server running on port ${this.address().port}`);
 });
