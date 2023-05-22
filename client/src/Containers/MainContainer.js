@@ -11,6 +11,7 @@ import TripsList from "../Components/TripsList";
 import Navbar from "../Components/Header/Navbar";
 import ErrorPage from "../Components/ErrorPage";
 import Footer from "../Components/Footer/Footer";
+import TripResult from "../Components/Results/TripResult";
 
 // Service imports
 import TripService from "../TripService";
@@ -68,6 +69,9 @@ const MainContainer = () => {
             path="/my_trips"
             element={<TripsList trips={trips} removeTrip={removeTrip} />}
           />
+          <Route
+            path="/trip_result"
+            element={<TripResult />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
