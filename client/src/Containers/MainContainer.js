@@ -5,7 +5,7 @@ import "../App.css";
 
 // Component imports
 import Dashboard from "../Components/Dashboard/Dashboard";
-import TripForm from "../Components/TripForm";
+import TripForm from "../Components/TripForm/TripForm";
 import TripsList from "../Components/TripsList";
 import Navbar from "../Components/Header/Navbar";
 import ErrorPage from "../Components/ErrorPage";
