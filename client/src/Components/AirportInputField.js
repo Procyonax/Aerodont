@@ -9,31 +9,7 @@ const AirportInputField = () => {
   useEffect(() => {
     loadAirports();
   }, []);
-
-  const loadAirports = () => {
-    fetch(
-      "https://raw.githubusercontent.com/datasets/airport-codes/master/data/airport-codes.csv"
-    )
-      .then((response) => {
-        return response.text();
-      })
-      .then((csv) => {
-        const { data } = Papa.parse(csv, { header: true });
-        console.log(data);
-        const finalData = data.filter(
-          (airport) =>
-            airport["iata_code"] !== "" &&
-            airport["iata_code"] !== "0" &&
-            airport["iata_code"] !== "-"
-        );
-        console.log(finalData);
-        finalData.pop();
-        setAirports(finalData);
-      })
-      .catch((error) => {
-        console.error("Error occurred:", error);
-      });
-  };
+  
 
     const loadAirports = () => {
         fetch('https://raw.githubusercontent.com/datasets/airport-codes/master/data/airport-codes.csv')
@@ -66,10 +42,6 @@ const AirportInputField = () => {
         setSuggestions(matches)
         setText(text)
     }
-    // console.log('matches', matches);
-    setSuggestions(matches);
-    setText(text);
-  };
 
   const onSuggestHandler = (text) => {
     setText(text);
@@ -93,7 +65,7 @@ const AirportInputField = () => {
         <div key={i} onClick={() => onSuggestHandler(suggestion.name)}>
             {suggestion.name}
           </div>
-        ))}
+        )}
     </div>
   );
 };

@@ -30,22 +30,6 @@ const TripForm = ({ createTrip }) => {
     setNights("");
   };
 
-  return (
-    <div className="trip-form-container">
-      <form onSubmit={handleSubmit}>
-        <h1 className="create-trip-header">Create Trip</h1>
-        <div className="create-trip">
-          <label htmlFor="from">From: </label>
-          <input
-            type="text"
-            id="from"
-            name="from"
-            value={from}
-            required
-            onChange={handleFromChange}
-          />
-        </div>
-
 
     return(
         <div className="trip-form-container">
