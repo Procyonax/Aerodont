@@ -3,7 +3,6 @@ import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "../App.css";
 
-
 // Component imports
 import Dashboard from "../Components/Dashboard/Dashboard";
 import TripForm from "../Components/TripForm/TripForm";
@@ -69,9 +68,7 @@ const MainContainer = () => {
             path="/my_trips"
             element={<TripsList trips={trips} removeTrip={removeTrip} />}
           />
-          <Route
-            path="/trip_result"
-            element={<TripResult />} />
+          <Route path="/trip_result" element={<TripResult />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>
