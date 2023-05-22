@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import './TripForm.css';
 import '../../App.css';
+import AirportInputField from '../AirportInputField';
 
 const TripForm = ({createTrip}) => {
 
@@ -36,12 +37,12 @@ const TripForm = ({createTrip}) => {
             <h1 className="create-trip-header">Create Trip</h1>
                 <div className="create-trip">
                     <label htmlFor="from">From: </label>
-                    <input type="text" id="from" name="from" value={from} required onChange={handleFromChange}/>
+                    <AirportInputField/>
                 </div>
                 
                 <div className="create-trip">
                     <label htmlFor="to">To: </label>
-                    <input type="text" id="to" name="to" value={to} required onChange={handleToChange}/>
+                    <AirportInputField/>
                 </div>
             
                 <div className="create-trip">

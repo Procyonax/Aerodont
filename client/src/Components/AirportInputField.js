@@ -18,9 +18,9 @@ const AirportInputField = () => {
           })
           .then(csv => {
             const {data} = Papa.parse(csv, { header: true });
-            console.log(data);
+            // console.log(data);
             const finalData = data.filter(airport => airport["iata_code"] !== "" && airport["iata_code"] !=="0" && airport["iata_code"] !== "-")
-            console.log(finalData);
+            // console.log(finalData);
             finalData.pop()
             setAirports(finalData);
           })
@@ -54,11 +54,12 @@ const AirportInputField = () => {
         <input type="text"
         onChange={event => onChangeHandler(event.target.value)}
         value={text}
-        onBlur={()=>{
-            setTimeout(()=>{
-                setSuggestions([])
-            },100);
-        }}/>
+        // onBlur={()=>{
+        //     setTimeout(()=>{
+        //         setSuggestions([])
+        //     },100);
+        // }}
+        />
         {suggestions && suggestions.map((suggestion, i)=>
         <div key={i} onClick={() => onSuggestHandler(suggestion.name)}>
             {suggestion.name}
