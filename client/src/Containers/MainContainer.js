@@ -13,7 +13,7 @@ import ErrorPage from "../Components/ErrorPage";
 import Footer from "../Components/Footer/Footer";
 
 // Service imports
-import TripService from "../TripService";
+import TripService, {putTrip} from "../TripService";
 
 // Container definition
 const MainContainer = () => {
