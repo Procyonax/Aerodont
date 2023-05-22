@@ -2,32 +2,94 @@ import React, {useState} from 'react';
 import './TripForm.css';
 import '../../App.css';
 import AirportInputField from '../AirportInputField';
+import Papa from "papaparse";
 
 const TripForm = ({ createTrip }) => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
   const [cabin, setCabin] = useState("economy");
   const [nights, setNights] = useState(0);
+  const [iatas, setIata] = useState([])
 
   const handleFromChange = (event) => setFrom(event.target.value);
   const handleToChange = (event) => setTo(event.target.value);
   const handleCabinChange = (event) => setCabin(event.target.value);
   const handleNightsChange = (event) => setNights(event.target.value);
 
+  const getCO2 = () => {
+    const flightsRequest = fetch('https://raw.githubusercontent.com/datasets/airport-codes/master/data/airport-codes.csv')
+      .then((response) => {
+        return response.text();
+      })
+      .then((csv) => {
+        const { data } = Papa.parse(csv, { header: true });
+        console.log(data);
+        const finalData = data.filter((airport) => airport['name'] == from || airport['name'] == to);
+        console.log(finalData);
+        return finalData;})
+      .then((data) => {
+        return fetch('https://beta4.api.climatiq.io/travel/flights', {
+        method: 'POST',
+        headers: { Authorization: 'Bearer MXY2H3ZR0TMBA9NZQRT4AVXVP20Y' },
+        body: `{"legs":[{"from":"${data[0]['iata_code']}","to":"${data[1]['iata_code']}","passengers":1,"class":"economy"},{"from":"${data[1]['iata_code']}","to":"${data[0]['iata_code']}","passengers":1,"class":"economy"}]}`
+      });
+      })
+      .then((response) => response.json())
+      .then((response) => {
+        console.log(response);
+        return response.co2e;
+      })
+      
+    const hotelRequest = fetch('https://beta4.api.climatiq.io/estimate', {
+        method: 'POST',
+        headers: { Authorization: 'Bearer MXY2H3ZR0TMBA9NZQRT4AVXVP20Y','Content-Type': 'application/json' },
+        body: '{"emission_factor":{"activity_id":"accommodation_type_hotel_stay","source":"BEIS","region":"US","year":2022,"source_lca_activity":"unknown","data_version":"^1"},"parameters":{"number":1}}'
+    })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Hotel request failed with status: ' + response.status);
+      }
+      return response.json();
+    })
+    .then(response => {
+      console.log(response);
+      return response.co2e;
+    });
+
+  return Promise.all([flightsRequest, hotelRequest])
+    .then(([flightFootprint, hotelFootprint]) => {
+        console.log('flight', flightFootprint);
+        console.log('hotel', hotelFootprint);
+      const totalFootprint = flightFootprint + hotelFootprint;
+      return totalFootprint;
+    })
+    .catch(err => {
+      console.error(err);
+      throw err;
+    });
+};
+
   const handleSubmit = (event) => {
     event.preventDefault();
-    const trip = {
-      from: from,
-      to: to,
-      cabin: cabin,
-      nights: nights,
-    };
-
-    createTrip(trip);
-    setFrom("");
-    setTo("");
-    setCabin("");
-    setNights("");
+    getCO2().then((response) => {
+        console.log(response);
+        const footprint = response
+        console.log('footprint',footprint);
+      const trip = {
+        from: from,
+        to: to,
+        cabin: cabin,
+        nights: nights,
+        footprint: footprint, 
+      };
+      console.log(trip);
+      createTrip(trip);
+      setFrom("");
+      setTo("");
+      setCabin("");
+      setNights("");
+      setIata([])
+    });
   };
 
 
