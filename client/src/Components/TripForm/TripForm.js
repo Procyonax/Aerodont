@@ -1,4 +1,5 @@
 import React, {useState} from 'react';
+import { Link } from 'react-router-dom';
 import './TripForm.css';
 import '../../App.css';
 import AirportInputField from '../AirportInputField';
@@ -9,8 +10,6 @@ const TripForm = ({ createTrip }) => {
   const [cabin, setCabin] = useState("");
   const [nights, setNights] = useState(0);
 
-  const handleFromChange = (event) => setFrom(event.target.value);
-  const handleToChange = (event) => setTo(event.target.value);
   const handleCabinChange = (event) => setCabin(event.target.value);
   const handleNightsChange = (event) => setNights(event.target.value);
 
@@ -73,12 +72,14 @@ const TripForm = ({ createTrip }) => {
               />
             </div>
         <div className="create-trip-button-container">
-          <input
-            className="create-trip-button"
-            type="submit"
-            name="submit"
-            value="Create Trip"
-          />
+          <Link to="/trip_result">
+            <input
+              className="create-trip-button"
+              type="submit"
+              name="submit"
+              value="Create Trip"
+            />
+            </Link>
         </div>
       </form>
     </div>
