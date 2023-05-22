@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "../App.css";
 
 // Component imports
-import Dashboard from "../Components/Dashboard";
+import Dashboard from "../Components/Dashboard/Dashboard";
 import TripForm from "../Components/TripForm";
 import TripsList from "../Components/TripsList";
 import Navbar from "../Components/Header/Navbar";

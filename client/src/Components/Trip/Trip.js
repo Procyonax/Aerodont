@@ -1,7 +1,8 @@
 import React from 'react';
 import { deleteTrip } from '../../TripService';
-import './Trip.css';
 import '../../App.css'
+import './Trip.css';
+
 
 const Trip = ({trip, removeTrip}) => {
 
