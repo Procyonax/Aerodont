@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Papa from "papaparse";
 
-const AirportInputField = ({destination, setTo, setFrom}) => {
+const AirportInputField = ({destination, setTo, setFrom, setEditTo, setEditFrom}) => {
   const [airports, setAirports] = useState([]);
   const [text, setText] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -16,6 +16,15 @@ const AirportInputField = ({destination, setTo, setFrom}) => {
     }
     if (destination === 'to'){
       setTo(text)
+    }
+  }, [text])
+
+  useEffect(() => {
+    if (destination === 'from-edit'){
+      setEditFrom(text)
+    }
+    if (destination === 'to-edit'){
+      setEditTo(text)
     }
   }, [text])
   

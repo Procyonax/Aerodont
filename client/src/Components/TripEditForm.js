@@ -3,9 +3,12 @@ import AirportInputField from "./AirportInputField";
 
 const TripEditForm = ({handleTripUpdate, tripToEdit, handleEditClicked}) => {
     
+    const [editFrom, setEditFrom] = useState("");
+    const [editTo, setEditTo] = useState("");
+
     const [formData, setFormData] = useState({
-        from: tripToEdit.from,
-        to: tripToEdit.to,
+        from: tripToEdit.editFrom,
+        to: tripToEdit.editTo,
         cabin: tripToEdit.cabin,
         nights: tripToEdit.nights,
     })
@@ -20,8 +23,8 @@ const TripEditForm = ({handleTripUpdate, tripToEdit, handleEditClicked}) => {
         event.preventDefault();
         handleTripUpdate(tripToEdit._id, formData)
         setFormData({
-            from: "",
-            to: "",
+            editFrom: "",
+            editTo: "",
             cabin: "",
             nights: "",
         });
@@ -34,12 +37,12 @@ const TripEditForm = ({handleTripUpdate, tripToEdit, handleEditClicked}) => {
             <h1 className="edit-trip-header">Edit Trip</h1>
                 <div className="edit-trip">
                     <label htmlFor="from">From: </label>
-                    <AirportInputField destination='from' setTo={setTo} setFrom={setFrom}/> 
+                    <AirportInputField destination='from-edit' setEditTo={setEditTo} setEditFrom={setEditFrom}/> 
                 </div>
                     
                 <div className="edit-trip">
                     <label htmlFor="to">To: </label>
-                    <AirportInputField destination='to' setTo={setTo} setFrom={setFrom}/>
+                    <AirportInputField destination='to-edit' setEditTo={setEditTo} setEditFrom={setEditFrom}/>
                 </div>
 
                 <div className="edit-trip">
