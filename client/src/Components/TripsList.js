@@ -1,6 +1,5 @@
 import React from "react";
 import "../App.css";
-import logo from "../logo.svg";
 
 import Trip from "./Trip/Trip";
 import TripEditForm from "./TripEditForm";
