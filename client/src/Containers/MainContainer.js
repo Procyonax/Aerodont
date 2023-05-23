@@ -56,6 +56,7 @@ const MainContainer = () => {
   };
 
   const handleEditClicked = (trip) => {
+    console.log(trip);
     setTripToEdit(trip)
   };
 
