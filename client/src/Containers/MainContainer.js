@@ -54,6 +54,12 @@ const MainContainer = () => {
     );
   };
 
+  const viewTrip = (id) => {
+    TripService.getTrip(id).then(() => {
+      viewTrip(id);
+    })
+  }
+
   return (
     <Router>
       <Navbar />
@@ -68,7 +74,8 @@ const MainContainer = () => {
             path="/my_trips"
             element={<TripsList trips={trips} removeTrip={removeTrip} />}
           />
-          <Route path="/trip_result" element={<TripResult />} />
+          <Route path="/trip_result/" element={<TripResult />} />
+          <Route path="/trip_result/<id>" element={<TripResult viewTrip={viewTrip}/>} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </div>

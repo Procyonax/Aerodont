@@ -1,4 +1,4 @@
-use trips;
+
 db.dropDatabase();
 
 db.trips.insertMany([

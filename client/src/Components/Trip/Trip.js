@@ -3,12 +3,17 @@ import TripService from "../../TripService";
 import "../../App.css";
 import "./Trip.css";
 
-const Trip = ({ trip, removeTrip }) => {
+const Trip = ({ trip, removeTrip, viewTrip }) => {
   const handleDelete = () => {
     TripService.deleteTrip(trip._id).then(() => {
       removeTrip(trip._id);
     });
   };
+  const handleView = () => {
+    TripService.getTrip(trip._id).then(() => {
+      viewTrip(trip._id);
+    })
+  }
 
   return (
     <div className="trip-container">
@@ -22,7 +27,7 @@ const Trip = ({ trip, removeTrip }) => {
           To: <span>{trip.to}</span>
         </p>
         <p className="trip-cabin">
-          To: <span>{trip.cabin}</span>
+          Cabin: <span>{trip.cabin}</span>
         </p>
         <p className="trip-nights">
           {" "}
@@ -35,7 +40,7 @@ const Trip = ({ trip, removeTrip }) => {
           <span>{Math.round(trip.footprint).toLocaleString("en-US")}kg</span>
         </p>
         <div className="trip-buttons">
-          <button className="trip-edit"> Edit </button>
+          <button className="trip-edit" onClick={handleView}> View </button>
           <button className="trip-delete" onClick={handleDelete}>
             {" "}
             Delete{" "}

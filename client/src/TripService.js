@@ -15,6 +15,12 @@ const TripService = {
     return fetch(baseURL).then((res) => res.json());
   },
 
+  getTrip(id) {
+    return fetch(baseURL + id, {
+      method: "GET",
+    }).then((res) => res.json());
+  },
+
   deleteTrip(id) {
     return fetch(baseURL + id, {
       method: "DELETE",
