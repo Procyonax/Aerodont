@@ -55,6 +55,14 @@ const MainContainer = () => {
     );
   };
 
+  const handleEditClicked = (trip) => {
+    setTripToEdit(trip)
+  };
+
+  const handleTripUpdate = (id, trip) => {
+    putTrip(id, trip)
+  };
+
   return (
     <Router>
       <Navbar />
