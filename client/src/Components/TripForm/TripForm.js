@@ -7,7 +7,7 @@ import Papa from "papaparse";
 const TripForm = ({ createTrip }) => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
-  const [cabin, setCabin] = useState("");
+  const [cabin, setCabin] = useState("Economy");
   const [nights, setNights] = useState(0);
   const [iatas, setIata] = useState([])
 
@@ -26,10 +26,11 @@ const TripForm = ({ createTrip }) => {
         console.log(finalData);
         return finalData;})
       .then((data) => {
+        console.log(cabin);
         return fetch('https://beta4.api.climatiq.io/travel/flights', {
         method: 'POST',
         headers: { Authorization: 'Bearer MXY2H3ZR0TMBA9NZQRT4AVXVP20Y' },
-        body: `{"legs":[{"from":"${data[0]['iata_code']}","to":"${data[1]['iata_code']}","passengers":1,"class":"economy"},{"from":"${data[1]['iata_code']}","to":"${data[0]['iata_code']}","passengers":1,"class":"economy"}]}`
+        body: `{"legs":[{"from":"${data[0]['iata_code']}","to":"${data[1]['iata_code']}","passengers":1,"class":"${String(cabin)}"},{"from":"${data[1]['iata_code']}","to":"${data[0]['iata_code']}","passengers":1,"class":"${String(cabin)}"}]}`
       });
       })
       .then((response) => response.json())
@@ -116,17 +117,27 @@ const TripForm = ({ createTrip }) => {
             required
             onChange={handleCabinChange}
           >
-            <option value="Economy">Economy</option>
-            <option value="Premium">Premium</option>
-            <option value="Business">Business</option>
-            <option value="First">First</option>
+            <option value="economy">Economy</option>
+            <option value="business">Business</option>
+            <option value="first">First</option>
           </select>
         </div>
+
+        {/* <div>
+            <label htmlFor="cabin">Cabin: </label>
+            <input
+                type="text"
+                value={cabin}
+                required
+                onChange={handleCabinChange}
+                />
+        </div> */}
 
         <div className="create-trip">
           <label htmlFor="nights">Nights: </label>
           <input
             type="number"
+            min = "0"
             step="1"
             id="nights"
             name="nights"
