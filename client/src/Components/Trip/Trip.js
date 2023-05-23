@@ -26,7 +26,7 @@ const Trip = ({ trip, removeTrip, handleEditClicked }) => {
           To: <span>{trip.to}</span>
         </p>
         <p className="trip-cabin">
-          To: <span>{trip.cabin}</span>
+          Cabin: <span>{trip.cabin}</span>
         </p>
         <p className="trip-nights">
           {" "}
