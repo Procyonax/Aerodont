@@ -1,8 +1,6 @@
 .dash {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  flex-wrap: wrap;
 }
 
 .dash-header {
@@ -13,16 +11,23 @@
 }
 
 .dash-chart {
-  padding: 2rem;
-  background-color: white;
+  padding: 1rem;
+  background-color: #19191a;
   display: flex;
   justify-content: center;
+  height: 500px;
 }
 
 .dash-results {
   background-color: white;
   padding: 2rem;
   margin-bottom: 2rem;
+  margin-top: -20rem;
+  display: flex;
+  justify-content: space-evenly;
+  border-style: solid;
+  border-color: #efd231;
+  border-width: 0.3rem;
 }
 
 .dash-results-CO2 {

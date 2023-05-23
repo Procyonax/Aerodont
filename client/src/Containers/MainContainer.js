@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import "../App.css";
+import Trend from 'react-trend'
 
 // Component imports
 import Dashboard from "../Components/Dashboard/Dashboard";
