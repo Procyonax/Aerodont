@@ -12,12 +12,24 @@ const AirportInputField = ({ destination, setTo, setFrom }) => {
 
   useEffect(() => {
     if (destination === "from") {
+      console.log("text", text);
       setFrom(text);
     }
     if (destination === "to") {
+      console.log("text", text);
+
       setTo(text);
     }
   }, [text]);
+
+  // useEffect(() => {
+  //   if (destination === "from-edit"){
+  //     setEditFrom(text);
+  //   }
+  //   if (destination === "edit-to") {
+  //     setEditTo(text);
+  //   }
+  // }, [text])
 
   const loadAirports = () => {
     fetch(

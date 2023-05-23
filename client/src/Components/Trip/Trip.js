@@ -3,7 +3,7 @@ import TripService from "../../TripService";
 import "../../App.css";
 import "./Trip.css";
 
-const Trip = ({ trip, removeTrip, handleEditClicked }) => {
+const Trip = ({ trip, removeTrip, handleEditClicked, setFormData }) => {
   const handleDelete = () => {
     TripService.deleteTrip(trip._id).then(() => {
       removeTrip(trip._id);
