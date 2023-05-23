@@ -66,7 +66,8 @@ const MainContainer = () => {
           />
           <Route
             path="/my_trips"
-            element={<TripsList trips={trips} removeTrip={removeTrip} />}
+            element={<TripsList trips={trips} removeTrip={removeTrip}
+            handleEditClicked={handleEditClicked} tripToEdit={tripToEdit} handleTripUpdate={handleTripUpdate} />}
           />
           <Route path="/trip_result" element={<TripResult />} />
           <Route path="*" element={<ErrorPage />} />
