@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Papa from "papaparse";
 
-const AirportInputField = ({destination, setTo, setFrom}) => {
+const AirportInputField = ({ destination, setTo, setFrom }) => {
   const [airports, setAirports] = useState([]);
   const [text, setText] = useState("");
   const [suggestions, setSuggestions] = useState([]);
@@ -11,48 +11,54 @@ const AirportInputField = ({destination, setTo, setFrom}) => {
   }, []);
 
   useEffect(() => {
-    if (destination === 'from'){
-      setFrom(text)
+    if (destination === "from") {
+      setFrom(text);
     }
-    if (destination === 'to'){
-      setTo(text)
+    if (destination === "to") {
+      setTo(text);
     }
-  }, [text])
-  
+  }, [text]);
 
-    const loadAirports = () => {
-        fetch('https://raw.githubusercontent.com/datasets/airport-codes/master/data/airport-codes.csv')
-          .then(response => {
-            return response.text();
-          })
-          .then(csv => {
-            const {data} = Papa.parse(csv, { header: true });
-            // console.log(data);
-            const finalData = data.filter(airport => airport["iata_code"] !== "" && airport["iata_code"] !=="0" && airport["iata_code"] !== "-")
-            // console.log(finalData);
-            finalData.pop()
-            setAirports(finalData);
-          })
-          .catch(error => {
-            console.error('Error occurred:', error);
-          });
-      };
+  const loadAirports = () => {
+    fetch(
+      "https://raw.githubusercontent.com/datasets/airport-codes/master/data/airport-codes.csv"
+    )
+      .then((response) => {
+        return response.text();
+      })
+      .then((csv) => {
+        const { data } = Papa.parse(csv, { header: true });
+        // console.log(data);
+        const finalData = data.filter(
+          (airport) =>
+            airport["iata_code"] !== "" &&
+            airport["iata_code"] !== "0" &&
+            airport["iata_code"] !== "-"
+        );
+        // console.log(finalData);
+        finalData.pop();
+        setAirports(finalData);
+      })
+      .catch((error) => {
+        console.error("Error occurred:", error);
+      });
+  };
 
-    const onChangeHandler = (text) => {
-        let matches = []
-        // console.log(airports);
-        if(text.length>0){
-            matches = airports.filter(airport => {
-                const regex = new RegExp(`${text}`, "gi");
-                return airport.name.match(regex)
-            })
-        }
-        // console.log('matches', matches);
-        setSuggestions(matches)
-        setText(text)
-        // setFrom(foundAirport)
-        // setTo(foundAirport)
+  const onChangeHandler = (text) => {
+    let matches = [];
+    // console.log(airports);
+    if (text.length > 0) {
+      matches = airports.filter((airport) => {
+        const regex = new RegExp(`${text}`, "gi");
+        return airport.name.match(regex);
+      });
     }
+    // console.log('matches', matches);
+    setSuggestions(matches);
+    setText(text);
+    // setFrom(foundAirport)
+    // setTo(foundAirport)
+  };
 
     const onSuggestHandler = (airport) => {
       setText(airport.name);
@@ -76,7 +82,7 @@ const AirportInputField = ({destination, setTo, setFrom}) => {
         <div key={i} onClick={() => onSuggestHandler(suggestion)}>
             {suggestion.name} ({suggestion.iata_code})
           </div>
-        )}
+        ))}
     </div>
   );
 };
