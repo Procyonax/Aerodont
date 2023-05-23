@@ -11,8 +11,8 @@ const Trip = ({ trip, removeTrip, handleEditClicked, setFormData }) => {
   };
 
   const handleEdit = () => {
-    handleEditClicked(trip)
-  }
+    handleEditClicked(trip);
+  };
 
   return (
     <div className="trip-container">
@@ -40,11 +40,15 @@ const Trip = ({ trip, removeTrip, handleEditClicked, setFormData }) => {
         </p>
 
         <p className="tree-equivalence">
-        🌲 Plant at least {Math.ceil(trip.footprint/1000)} trees to offset this trip 🌲
+          🌲 Plant at least {Math.ceil(trip.footprint / 1000)} trees to offset
+          this trip 🌲
         </p>
 
         <div className="trip-buttons">
-          <button className="trip-edit" onClick={handleEdit}> Edit </button>
+          <button className="trip-edit" onClick={handleEdit}>
+            {" "}
+            Edit{" "}
+          </button>
           <button className="trip-delete" onClick={handleDelete}>
             {" "}
             Delete{" "}
