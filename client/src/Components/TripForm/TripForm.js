@@ -10,6 +10,7 @@ const TripForm = ({ createTrip }) => {
   const [cabin, setCabin] = useState("Economy");
   const [nights, setNights] = useState(0);
   const [iatas, setIata] = useState([])
+  const [country, setCountry] = useState("")
 
   const handleCabinChange = (event) => setCabin(event.target.value);
   const handleNightsChange = (event) => setNights(event.target.value);
@@ -39,11 +40,24 @@ const TripForm = ({ createTrip }) => {
         return response.co2e;
       })
       
-    const hotelRequest = fetch('https://beta4.api.climatiq.io/estimate', {
-        method: 'POST',
-        headers: { Authorization: 'Bearer MXY2H3ZR0TMBA9NZQRT4AVXVP20Y','Content-Type': 'application/json' },
-        body: '{"emission_factor":{"activity_id":"accommodation_type_hotel_stay","source":"BEIS","region":"US","year":2022,"source_lca_activity":"unknown","data_version":"^1"},"parameters":{"number":1}}'
-    })
+    const hotelRequest = fetch('https://raw.githubusercontent.com/datasets/airport-codes/master/data/airport-codes.csv') 
+      .then((response) => {
+        return response.text();
+      })
+      .then((csv) => {
+        const { data } = Papa.parse(csv, { header: true });
+        console.log(data);
+        const finalData = data.filter((airport) => airport['name'] == from || airport['name'] == to);
+        console.log(finalData);
+        return finalData;})
+        .then((data) => {
+          console.log(nights);
+          return fetch('https://beta4.api.climatiq.io/estimate', {
+            method: 'POST',
+            headers: { Authorization: 'Bearer MXY2H3ZR0TMBA9NZQRT4AVXVP20Y','Content-Type': 'application/json' },
+            body: `{"emission_factor":{"activity_id":"accommodation_type_hotel_stay","source":"BEIS","region":"${data[1]['iso_country']}","year":2022,"source_lca_activity":"unknown","data_version":"^1"},"parameters":{"number":${nights}}}`
+          })
+        })
     .then(response => {
       if (!response.ok) {
         throw new Error('Hotel request failed with status: ' + response.status);
