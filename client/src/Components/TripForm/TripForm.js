@@ -26,10 +26,11 @@ const TripForm = ({ createTrip }) => {
         console.log(finalData);
         return finalData;})
       .then((data) => {
+        console.log(cabin);
         return fetch('https://beta4.api.climatiq.io/travel/flights', {
         method: 'POST',
         headers: { Authorization: 'Bearer MXY2H3ZR0TMBA9NZQRT4AVXVP20Y' },
-        body: `{"legs":[{"from":"${data[0]['iata_code']}","to":"${data[1]['iata_code']}","passengers":1,"class":"economy"},{"from":"${data[1]['iata_code']}","to":"${data[0]['iata_code']}","passengers":1,"class":"economy"}]}`
+        body: `{"legs":[{"from":"${data[0]['iata_code']}","to":"${data[1]['iata_code']}","passengers":1,"class":"${String(cabin)}"},{"from":"${data[1]['iata_code']}","to":"${data[0]['iata_code']}","passengers":1,"class":"${String(cabin)}"}]}`
       });
       })
       .then((response) => response.json())
@@ -121,6 +122,16 @@ const TripForm = ({ createTrip }) => {
             <option value="first">First</option>
           </select>
         </div>
+
+        {/* <div>
+            <label htmlFor="cabin">Cabin: </label>
+            <input
+                type="text"
+                value={cabin}
+                required
+                onChange={handleCabinChange}
+                />
+        </div> */}
 
         <div className="create-trip">
           <label htmlFor="nights">Nights: </label>
