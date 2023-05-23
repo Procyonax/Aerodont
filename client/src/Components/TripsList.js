@@ -4,9 +4,9 @@ import logo from "../logo.svg";
 
 import Trip from "./Trip/Trip";
 
-const TripsList = ({ trips, removeTrip }) => {
+const TripsList = ({ trips, removeTrip, handleEditClicked, tripToEdit, handleTripUpdate }) => {
   const tripList = trips.map((trip) => {
-    return <Trip trip={trip} key={trip._id} removeTrip={removeTrip} />;
+    return <Trip trip={trip} key={trip._id} removeTrip={removeTrip} handleEditClicked={handleEditClicked} tripToEdit={tripToEdit} handleTripUpdate={handleTripUpdate}/>;
   });
   return <>{tripList}</>;
 };

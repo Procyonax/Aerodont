@@ -13,18 +13,19 @@ import Footer from "../Components/Footer/Footer";
 import TripResult from "../Components/Results/TripResult";
 
 // Service imports
-import TripService from "../TripService";
+import TripService, {putTrip} from "../TripService";
 
 // Container definition
 const MainContainer = () => {
   const [trips, setTrips] = useState([]);
   const [totals, setTotals] = useState({});
+  const [tripToEdit, setTripToEdit] = useState(null);
 
   useEffect(() => {
     TripService.getTrips().then((allTrips) => {
       setTrips(allTrips);
     });
-  }, []);
+  }, [tripToEdit]);
 
   useEffect(() => {
     setTotals(calculateTotals());

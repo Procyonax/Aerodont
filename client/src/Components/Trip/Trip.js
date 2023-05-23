@@ -3,7 +3,7 @@ import TripService from "../../TripService";
 import "../../App.css";
 import "./Trip.css";
 
-const Trip = ({ trip, removeTrip }) => {
+const Trip = ({ trip, removeTrip, handleEditClicked, tripToEdit, handleTripUpdate }) => {
   const handleDelete = () => {
     TripService.deleteTrip(trip._id).then(() => {
       removeTrip(trip._id);
@@ -35,7 +35,7 @@ const Trip = ({ trip, removeTrip }) => {
           <span>{Math.round(trip.footprint).toLocaleString("en-US")}kg</span>
         </p>
         <div className="trip-buttons">
-          <button className="trip-edit"> Edit </button>
+          <button className="trip-edit" onClick={handleEditClicked}> Edit </button>
           <button className="trip-delete" onClick={handleDelete}>
             {" "}
             Delete{" "}
