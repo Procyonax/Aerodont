@@ -60,10 +60,16 @@ const AirportInputField = ({ destination, setTo, setFrom }) => {
     // setTo(foundAirport)
   };
 
-  const onSuggestHandler = (text) => {
-    setText(text);
-    setSuggestions([]);
-  };
+    const onSuggestHandler = (airport) => {
+      setText(airport.name);
+      if (destination === "from") {
+        setFrom(airport.iata_code);
+      }
+      if (destination === "to") {
+        setTo(airport.iata_code);
+      }
+      setSuggestions([]);
+    };
 
   return (
     <div>
@@ -71,11 +77,10 @@ const AirportInputField = ({ destination, setTo, setFrom }) => {
         type="text"
         onChange={(event) => onChangeHandler(event.target.value)}
         value={text}
-      />
-      {suggestions &&
-        suggestions.map((suggestion, i) => (
-          <div key={i} onClick={() => onSuggestHandler(suggestion.name)}>
-            {suggestion.name}
+        />
+        {suggestions && suggestions.map((suggestion, i)=>
+        <div key={i} onClick={() => onSuggestHandler(suggestion)}>
+            {suggestion.name} ({suggestion.iata_code})
           </div>
         ))}
     </div>
