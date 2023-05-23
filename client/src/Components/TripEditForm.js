@@ -1,5 +1,6 @@
 import { useState } from "react";
 import AirportInputField from "./AirportInputField";
+import "./TripEditForm.css"
 
 const TripEditForm = ({handleTripUpdate, tripToEdit, handleEditClicked}) => {
     
@@ -37,12 +38,12 @@ const TripEditForm = ({handleTripUpdate, tripToEdit, handleEditClicked}) => {
             <h1 className="edit-trip-header">Edit Trip</h1>
                 <div className="edit-trip">
                     <label htmlFor="from">From: </label>
-                    <AirportInputField destination='from-edit' setEditTo={setEditTo} setEditFrom={setEditFrom}/> 
+                    <AirportInputField className="airport-input" destination='from-edit' setEditTo={setEditTo} setEditFrom={setEditFrom}/> 
                 </div>
                     
                 <div className="edit-trip">
                     <label htmlFor="to">To: </label>
-                    <AirportInputField destination='to-edit' setEditTo={setEditTo} setEditFrom={setEditFrom}/>
+                    <AirportInputField className="airport-input" destination='to-edit' setEditTo={setEditTo} setEditFrom={setEditFrom}/>
                 </div>
 
                 <div className="edit-trip">
@@ -53,10 +54,9 @@ const TripEditForm = ({handleTripUpdate, tripToEdit, handleEditClicked}) => {
                         required
                         onChange={onChange}
                     >
-                        <option value="Economy">Economy</option>
-                        <option value="Premium">Premium</option>
-                        <option value="Business">Business</option>
-                        <option value="First">First</option>
+                        <option value="economy">Economy</option>
+                        <option value="business">Business</option>
+                        <option value="first">First</option>
                     </select>
                 </div>
 
