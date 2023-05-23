@@ -7,7 +7,7 @@ import Papa from "papaparse";
 const TripForm = ({ createTrip }) => {
   const [from, setFrom] = useState("");
   const [to, setTo] = useState("");
-  const [cabin, setCabin] = useState("");
+  const [cabin, setCabin] = useState("Economy");
   const [nights, setNights] = useState(0);
   const [iatas, setIata] = useState([])
 
@@ -116,10 +116,9 @@ const TripForm = ({ createTrip }) => {
             required
             onChange={handleCabinChange}
           >
-            <option value="Economy">Economy</option>
-            <option value="Premium">Premium</option>
-            <option value="Business">Business</option>
-            <option value="First">First</option>
+            <option value="economy">Economy</option>
+            <option value="business">Business</option>
+            <option value="first">First</option>
           </select>
         </div>
 
@@ -127,6 +126,7 @@ const TripForm = ({ createTrip }) => {
           <label htmlFor="nights">Nights: </label>
           <input
             type="number"
+            min = "0"
             step="1"
             id="nights"
             name="nights"
