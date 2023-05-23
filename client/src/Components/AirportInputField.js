@@ -82,7 +82,7 @@ const AirportInputField = ({ destination, setTo, setFrom }) => {
         <div key={i} onClick={() => onSuggestHandler(suggestion)}>
             {suggestion.name} ({suggestion.iata_code})
           </div>
-        ))}
+        )}
     </div>
   );
 };

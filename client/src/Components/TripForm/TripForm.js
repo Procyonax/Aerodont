@@ -136,14 +136,14 @@ const TripForm = ({ createTrip }) => {
           />
         </div>
         <div className="create-trip-button-container">
-          <Link to="/trip_result">
+          {/* <Link to="/trip_result"> */}
             <input
               className="create-trip-button"
               type="submit"
               name="submit"
               value="Create Trip"
             />
-          </Link>
+          {/* </Link> */}
         </div>
       </form>
     </div>
