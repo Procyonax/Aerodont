@@ -3,7 +3,7 @@ import { Navigate } from "react-router-dom";
 import "../../App.css";
 import "./Dashboard.css";
 // @ts-ignore
-import Trend from 'react-trend';
+import Trend from "react-trend";
 
 const TrendLine = () => (
   <Trend
@@ -11,11 +11,11 @@ const TrendLine = () => (
     autoDraw
     autoDrawDuration={3000}
     autoDrawEasing="ease-out"
-    data={[0,2,5,9,5,10,3,5,0,0,1,8,2,9,0]}
-    gradient={['green', 'orange', 'red']}
+    data={[0, 2, 5, 9, 5, 10, 3, 5, 0, 0, 1, 8, 2, 9, 0]}
+    gradient={["green", "orange", "red"]}
     radius={0}
     strokeWidth={3.3}
-    strokeLinecap={'butt'}
+    strokeLinecap={"butt"}
   />
 );
 
@@ -28,7 +28,9 @@ const Dashboard = ({ totals }) => {
 
   return (
     <div className="dash">
-      <div className="dash-chart"><TrendLine /></div>
+      <div className="dash-chart">
+        <TrendLine />
+      </div>
       <div className="dash-results">
         <div className="dash-results-CO2">
           CO2:{" "}
