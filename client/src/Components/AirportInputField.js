@@ -22,15 +22,6 @@ const AirportInputField = ({ destination, setTo, setFrom }) => {
     }
   }, [text]);
 
-  // useEffect(() => {
-  //   if (destination === "from-edit"){
-  //     setEditFrom(text);
-  //   }
-  //   if (destination === "edit-to") {
-  //     setEditTo(text);
-  //   }
-  // }, [text])
-
   const loadAirports = () => {
     fetch(
       "https://raw.githubusercontent.com/datasets/airport-codes/master/data/airport-codes.csv"
@@ -88,7 +79,7 @@ const AirportInputField = ({ destination, setTo, setFrom }) => {
       <input
         type="text"
         onChange={(event) => onChangeHandler(event.target.value)}
-        value={text}
+        value={text}  placeholder="Input Airport"
         />
         {suggestions && suggestions.map((suggestion, i)=>
         <div key={i} onClick={() => onSuggestHandler(suggestion)}>

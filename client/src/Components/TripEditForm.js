@@ -82,6 +82,7 @@ const TripEditForm = ({handleTripUpdate, tripToEdit, handleEditClicked}) => {
                         required
                         onChange={onChange}
                     >
+                        <option>Please Select</option>
                         <option value="economy">Economy</option>
                         <option value="business">Business</option>
                         <option value="first">First</option>
