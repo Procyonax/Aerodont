@@ -77,6 +77,7 @@ const TripEditForm = ({handleTripUpdate, tripToEdit, handleEditClicked}) => {
                     <label htmlFor="nights">Nights: </label>
                     <input
                         type="number"
+                        min="0"
                         step="1"
                         id="nights"
                         name="nights"
