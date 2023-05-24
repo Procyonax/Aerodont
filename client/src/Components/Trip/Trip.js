@@ -14,9 +14,9 @@ const Trip = ({ trip, removeTrip, handleEditClicked, setFormData }) => {
     handleEditClicked(trip);
   };
 
-  const word = trip.cabin
-  console.log(word);
-  const formattedCabin = word.charAt(0).toUpperCase() + word.slice(1)
+  // const word = trip.cabin
+  // console.log(word);
+  // const formattedCabin = word.charAt(0).toUpperCase() + word.slice(1)
 
 
   return (
@@ -31,7 +31,7 @@ const Trip = ({ trip, removeTrip, handleEditClicked, setFormData }) => {
           To: <span>{trip.to}</span>
         </p>
         <p className="trip-cabin">
-          Cabin: <span>{formattedCabin}</span>
+          Cabin: <span>{trip.cabin.toString().charAt(0).toUpperCase() + trip.cabin.toString().slice(1)}</span>
         </p>
         <p className="trip-nights">
           {" "}

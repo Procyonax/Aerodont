@@ -34,7 +34,7 @@ const TripForm = ({ createTrip }) => {
         console.log(cabin);
         return fetch("https://beta4.api.climatiq.io/travel/flights", {
           method: "POST",
-          headers: { Authorization: "Bearer MXY2H3ZR0TMBA9NZQRT4AVXVP20Y" },
+          headers: { Authorization: `Bearer ${process.env.REACT_APP_API_KEY}` },
           body: `{"legs":[{"from":"${data[0]["iata_code"]}","to":"${
             data[1]["iata_code"]
           }","passengers":1,"class":"${String(cabin)}"},{"from":"${
@@ -64,7 +64,7 @@ const TripForm = ({ createTrip }) => {
           console.log(nights);
           return fetch('https://beta4.api.climatiq.io/estimate', {
             method: 'POST',
-            headers: { Authorization: 'Bearer MXY2H3ZR0TMBA9NZQRT4AVXVP20Y','Content-Type': 'application/json' },
+            headers: { Authorization: `Bearer ${process.env.REACT_APP_API_KEY}`,'Content-Type': 'application/json' },
             body: `{"emission_factor":{"activity_id":"accommodation_type_hotel_stay","source":"BEIS","region":"${data[1]['iso_country']}","year":2022,"source_lca_activity":"unknown","data_version":"^1"},"parameters":{"number":${nights}}}`
           })
         })
