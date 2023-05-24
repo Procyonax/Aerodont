@@ -57,20 +57,17 @@ const TripEditForm = ({ handleTripUpdate, tripToEdit, handleEditClicked }) => {
     handleEditClicked(null);
   };
 
-  return (
-    <div className="trip-edit-container">
-      <form onSubmit={onSubmit}>
-        <h1 className="edit-trip-header">Edit Trip</h1>
-        <div className="edit-trip">
-          <label htmlFor="from">From: </label>
-          <AirportInputField
-            className="airport-input"
-            destination="from"
-            setTo={handleToEdit}
-            setFrom={handleFromEdit}
-            value={formData.from}
-          />
-        </div>
+        event.preventDefault();
+        handleTripUpdate(tripToEdit._id, formData)
+        setFormData({
+            from: "",
+            to: "",
+            cabin: "",
+            nights: "",
+        });
+        handleEditClicked(null)
+        
+    }
 
         <div className="edit-trip">
           <label htmlFor="to">To: </label>
@@ -82,19 +79,20 @@ const TripEditForm = ({ handleTripUpdate, tripToEdit, handleEditClicked }) => {
           />
         </div>
 
-        <div className="edit-trip">
-          <label htmlFor="cabin">Cabin: </label>
-          <select
-            name="cabin"
-            value={formData.cabin}
-            required
-            onChange={onChange}
-          >
-            <option value="economy">Economy</option>
-            <option value="business">Business</option>
-            <option value="first">First</option>
-          </select>
-        </div>
+                <div className="edit-trip">
+                    <label htmlFor="cabin">Cabin: </label>
+                    <select
+                        name="cabin"
+                        value={formData.cabin}
+                        required
+                        onChange={onChange}
+                    >
+                        <option>Please Select</option>
+                        <option value="economy">Economy</option>
+                        <option value="business">Business</option>
+                        <option value="first">First</option>
+                    </select>
+                </div>
 
         <div className="edit-trip">
           <label htmlFor="nights">Nights: </label>

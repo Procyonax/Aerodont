@@ -48,27 +48,36 @@ const TripForm = ({ createTrip }) => {
       .then((response) => {
         console.log(response);
         return response.co2e;
-      });
-
-    const hotelRequest = fetch("https://beta4.api.climatiq.io/estimate", {
-      method: "POST",
-      headers: {
-        Authorization: "Bearer MXY2H3ZR0TMBA9NZQRT4AVXVP20Y",
-        "Content-Type": "application/json",
-      },
-      body: '{"emission_factor":{"activity_id":"accommodation_type_hotel_stay","source":"BEIS","region":"US","year":2022,"source_lca_activity":"unknown","data_version":"^1"},"parameters":{"number":1}}',
-    })
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error(
-            "Hotel request failed with status: " + response.status
-          );
-        }
-        return response.json();
       })
+      
+    const hotelRequest = fetch('https://raw.githubusercontent.com/datasets/airport-codes/master/data/airport-codes.csv') 
       .then((response) => {
-        console.log(response);
-        return response.co2e;
+        return response.text();
+      })
+      .then((csv) => {
+        const { data } = Papa.parse(csv, { header: true });
+        console.log(data);
+        const finalData = data.filter((airport) => airport['name'] == from || airport['name'] == to);
+        console.log(finalData);
+        return finalData;})
+        .then((data) => {
+          console.log(nights);
+          return fetch('https://beta4.api.climatiq.io/estimate', {
+            method: 'POST',
+            headers: { Authorization: 'Bearer MXY2H3ZR0TMBA9NZQRT4AVXVP20Y','Content-Type': 'application/json' },
+            body: `{"emission_factor":{"activity_id":"accommodation_type_hotel_stay","source":"BEIS","region":"${data[1]['iso_country']}","year":2022,"source_lca_activity":"unknown","data_version":"^1"},"parameters":{"number":${nights}}}`
+          })
+        })
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Hotel request failed with status: ' + response.status);
+      }
+      return response.json();
+    })
+    .then(response => {
+      console.log(response);
+      return response.co2e;
+    });
       });
 
     return Promise.all([flightsRequest, hotelRequest])
@@ -99,8 +108,8 @@ const TripForm = ({ createTrip }) => {
       };
       console.log(trip);
       createTrip(trip);
-      setFrom("");
-      setTo("");
+      // setFrom("");
+      // setTo("");
       setCabin("");
       setNights("");
       setIata([]);
@@ -133,6 +142,7 @@ const TripForm = ({ createTrip }) => {
             required
             onChange={handleCabinChange}
           >
+            <option>Please Select</option>
             <option value="economy">Economy</option>
             <option value="business">Business</option>
             <option value="first">First</option>
