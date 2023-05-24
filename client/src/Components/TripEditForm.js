@@ -57,6 +57,7 @@ const TripEditForm = ({handleTripUpdate, tripToEdit, handleEditClicked}) => {
             nights: "",
         });
         handleEditClicked(null)
+        
     }
 
     return ( 

@@ -96,8 +96,8 @@ const TripForm = ({ createTrip }) => {
       };
       console.log(trip);
       createTrip(trip);
-      setFrom("");
-      setTo("");
+      // setFrom("");
+      // setTo("");
       setCabin("");
       setNights("");
       setIata([])
