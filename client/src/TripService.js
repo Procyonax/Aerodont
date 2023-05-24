@@ -22,13 +22,12 @@ const TripService = {
   },
 };
 
-export const putTrip =(id, payload) => {
+export const putTrip = (id, payload) => {
   return fetch(baseURL + id, {
-    method: 'PUT',
+    method: "PUT",
     body: JSON.stringify(payload),
-    headers: {'Content-Type': 'application/json'}
-  })
-  .then(res => res.json())
-}
+    headers: { "Content-Type": "application/json" },
+  }).then((res) => res.json());
+};
 
 export default TripService;
