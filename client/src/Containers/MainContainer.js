@@ -69,7 +69,7 @@ const MainContainer = () => {
       <Navbar />
       <div className="main-container">
         <Routes>
-          <Route path="/" element={<Dashboard totals={totals} />} />
+          <Route path="/" element={<Dashboard totals={totals} trips={trips}/>} />
           <Route
             path="/create_trip"
             element={<TripForm createTrip={createTrip} />}

@@ -4,23 +4,16 @@ import "../../App.css";
 import "./Dashboard.css";
 // @ts-ignore
 import Trend from "react-trend";
+import Trip from "../Trip/Trip";
 
-const TrendLine = () => (
-  <Trend
-    smooth
-    autoDraw
-    autoDrawDuration={3000}
-    autoDrawEasing="ease-out"
-    data={[0, 2, 5, 9, 5, 10, 3, 5, 0, 0, 1, 8, 2, 9, 0]}
-    gradient={["green", "orange", "red"]}
-    radius={0}
-    strokeWidth={3.3}
-    strokeLinecap={"butt"}
-  />
-);
-
-const Dashboard = ({ totals }) => {
+const Dashboard = ({ totals, trips }) => {
   const [viewTrips, setViewTrips] = useState(false);
+
+  const footprintArray = trips.map((trip) => {
+    return Math.round(trip.footprint);
+  });
+
+  console.log(footprintArray);
 
   if (viewTrips) {
     return <Navigate to="/my_trips" />;
@@ -29,7 +22,17 @@ const Dashboard = ({ totals }) => {
   return (
     <div className="dash">
       <div className="dash-chart">
-        <TrendLine />
+      {footprintArray.length > 0 ? <Trend
+    smooth
+    autoDraw
+    autoDrawDuration={3000}
+    autoDrawEasing="ease-out"
+    data={footprintArray}
+    gradient={["green", "orange", "red"]}
+    radius={0}
+    strokeWidth={3.3}
+    strokeLinecap={"butt"}
+  /> : null}
       </div>
       <div className="dash-results">
         <div className="dash-results-CO2">
