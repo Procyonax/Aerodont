@@ -78,7 +78,6 @@ const TripForm = ({ createTrip }) => {
       console.log(response);
       return response.co2e;
     });
-      });
 
     return Promise.all([flightsRequest, hotelRequest])
       .then(([flightFootprint, hotelFootprint]) => {
