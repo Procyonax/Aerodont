@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 import "../App.css";
 
 import Trip from "./Trip/Trip";
 import TripEditForm from "./TripEditForm";
 
 const TripsList = ({ trips, removeTrip, handleEditClicked, tripToEdit, handleTripUpdate}) => {
+  const [footprints, setFootprints] = useState([])
   const tripList = trips.map((trip) => {
     if(tripToEdit != null){
       console.log('trip._id', trip._id);
@@ -33,6 +34,13 @@ const TripsList = ({ trips, removeTrip, handleEditClicked, tripToEdit, handleTri
       )
     }
      });
+
+     const footprintList = tripList.map(footprint => {
+      console.log(footprint);
+      return footprint
+      
+     })
+     console.log(footprintList);
   return <>{tripList}</>;
 };
 
