@@ -10,7 +10,6 @@ const TripForm = ({ createTrip }) => {
   const [cabin, setCabin] = useState("Economy");
   const [nights, setNights] = useState(0);
   const [iatas, setIata] = useState([])
-  const [country, setCountry] = useState("")
 
   const handleCabinChange = (event) => setCabin(event.target.value);
   const handleNightsChange = (event) => setNights(event.target.value);
