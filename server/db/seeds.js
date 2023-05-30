@@ -1,6 +1,10 @@
+// Select the trips database
 use trips;
+
+// drops the existing trips database
 db.dropDatabase();
 
+// seeds the trips database with initial data
 db.trips.insertMany([
   {
     from: "London Heathrow Airport",
