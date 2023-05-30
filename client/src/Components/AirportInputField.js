@@ -36,7 +36,11 @@ const AirportInputField = ({ destination, setTo, setFrom }) => {
           (airport) =>
             airport["iata_code"] !== "" &&
             airport["iata_code"] !== "0" &&
-            airport["iata_code"] !== "-"
+            airport["iata_code"] !== "-" &&
+            airport["type"] !== "heliport" &&
+            airport["type"] !== "balloonport" &&
+            airport["type"] !== "closed" &&
+            airport["type"] !== "seaplane_base"
         );
         // console.log(finalData);
         finalData.pop();
