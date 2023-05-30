@@ -53,8 +53,10 @@ const TripsList = ({ trips, removeTrip, handleEditClicked, tripToEdit, handleTri
       return footprint
       
      })
-     console.log(footprintList);
-  return <>{tripList}</>;
+
+  return <>{tripList.sort((a,b) => {
+    return a.props.trip.footprint - b.props.trip.footprint
+  })}</>;
 };
 
 export default TripsList;

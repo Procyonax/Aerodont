@@ -35,7 +35,7 @@ const TripForm = ({ createTrip }) => {
         console.log(cabin);
         return fetch("https://beta4.api.climatiq.io/travel/flights", {
           method: "POST",
-          headers: { Authorization: `Bearer ${process.env.REACT_APP_API_KEY}` },
+          headers: { Authorization: `Bearer MXY2H3ZR0TMBA9NZQRT4AVXVP20Y` },
           body: `{"legs":[{"from":"${data[0]["iata_code"]}","to":"${
             data[1]["iata_code"]
           }","passengers":1,"class":"${String(cabin)}"},{"from":"${

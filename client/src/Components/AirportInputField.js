@@ -52,7 +52,7 @@ const AirportInputField = ({ destination, setTo, setFrom }) => {
     // console.log(airports);
     if (text.length > 0) {
       matches = airports.filter((airport) => {
-        const regex = new RegExp(`${text}`, "gi");
+        const regex = new RegExp(`^${text}`, "gi");
         return airport.name.match(regex);
       });
     }
